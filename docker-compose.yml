@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  fedora-browser:
+    build: .
+    image: fedora-rawhide:latest
+    container_name: fedora-rawhide
+    ports:
+      - "6080:6080"  # noVNC web interface
+      - "5900:5900"  # VNC port (optional)
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+      - /home/richard/Projects/fedoraproject/python-gphoto2:/workspace
+    environment:
+      - DISPLAY=:1
+    stdin_open: true
+    tty: true
