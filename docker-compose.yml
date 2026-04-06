@@ -2,16 +2,16 @@ version: '3.8'
 
 services:
   fedora-browser:
-    build: .
-    image: fedora-rawhide:latest
+    image: ghcr.io/koxt2/fedora-rawhide:latest
     container_name: fedora-rawhide
     ports:
       - "6080:6080"  # noVNC web interface
       - "5900:5900"  # VNC port (optional)
+      - "2222:22"    # SSH access
     volumes:
-      - ~/.ssh:/root/.ssh:ro
+      - /home/server/storage/fedora-rawhide/.ssh:/root/.ssh:ro
       - ~/.gitconfig:/root/.gitconfig:ro
-      - /home/richard/Projects/fedoraproject/python-gphoto2:/workspace
+      - /home/server/storage/fedora-rawhide:/workspace
     environment:
       - DISPLAY=:1
     stdin_open: true
