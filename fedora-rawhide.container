@@ -5,9 +5,8 @@ Image=ghcr.io/koxt2/fedora-rawhide:latest
 PodmanArgs=--attach stdin --tty
 PublishPort=6080:6080
 PublishPort=5900:5900
-Volume=/home/server/storage/fedora-rawhide/.ssh:/root/.ssh:ro
-Volume=/home/server/.gitconfig:/root/.gitconfig:ro
-Volume=/home/server/storage/fedora-rawhide:/workspace
+PublishPort=2222:22
+Volume=/home/server/storage/fedora-rawhide:/home
 
 [Service]
 Restart=always
