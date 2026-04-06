@@ -28,7 +28,7 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 # Set working directory
-WORKDIR /workspace
+WORKDIR /home/user
 
 ENTRYPOINT ["/entrypoint.sh"]
 
