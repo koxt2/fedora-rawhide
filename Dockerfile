@@ -16,6 +16,10 @@ RUN dnf install -y --setopt=install_weak_deps=False \
     vim \
     && dnf clean all
 
+# Create non-root user
+RUN useradd -m -s /bin/bash user && \
+    echo 'user:pass' | chpasswd
+
 # Expose noVNC web port (6080) and SSH (22)
 EXPOSE 6080 22
 

@@ -48,6 +48,7 @@ create_novnc_symlink() {
 start_sshd() {
     ssh-keygen -A  # generate host keys if missing
     echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
     /usr/sbin/sshd &
 }
 
