@@ -18,7 +18,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
 
 # Set root password and create non-root user
 RUN echo 'root:root' | chpasswd && \
-    useradd -m -s /bin/bash user && \
+    useradd -m -G wheel -s /bin/bash user && \
     echo 'user:pass' | chpasswd
 
 # Expose noVNC web port (6080) and SSH (22)
