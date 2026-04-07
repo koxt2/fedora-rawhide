@@ -44,9 +44,18 @@ create_novnc_symlink() {
     fi
 }
 
+# Start SSH server
+start_sshd() {
+    ssh-keygen -A  # generate host keys if missing
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+    /usr/sbin/sshd &
+}
+
 # Main script execution
 main() {
     remove_x1_lock
+    start_sshd
     start_xvfb
     start_openbox
     set_terminal_permissions
