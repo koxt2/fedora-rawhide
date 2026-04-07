@@ -44,25 +44,9 @@ create_novnc_symlink() {
     fi
 }
 
-# Start SSH server
-start_sshd() {
-    # Use persistent host keys from /home so fingerprint survives restarts
-    mkdir -p /home/.ssh_host_keys
-    if [ ! -f /home/.ssh_host_keys/ssh_host_ed25519_key ]; then
-        ssh-keygen -A --sysconf /home/.ssh_host_keys
-    fi
-    for key in /home/.ssh_host_keys/ssh_host_*; do
-        ln -sf "$key" /etc/ssh/"$(basename $key)"
-    done
-    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
-    /usr/sbin/sshd &
-}
-
 # Main script execution
 main() {
     remove_x1_lock
-    start_sshd
     start_xvfb
     start_openbox
     set_terminal_permissions
