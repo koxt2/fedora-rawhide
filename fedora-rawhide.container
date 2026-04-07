@@ -6,7 +6,7 @@ PodmanArgs=--attach stdin --tty
 PublishPort=6080:6080
 PublishPort=5900:5900
 PublishPort=2222:22
-Volume=/home/server/storage/fedora-rawhide:/home:Z:Z
+Volume=/home/server/storage/fedora-rawhide:/home:Z
 
 [Service]
 Restart=always
