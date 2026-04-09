@@ -6,6 +6,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
     openssh-clients \
     openssh-server \
     fedpkg \
+    gcc \
     x11vnc \
     xorg-x11-server-Xvfb \
     novnc \
@@ -17,8 +18,8 @@ RUN dnf install -y --setopt=install_weak_deps=False \
     && dnf clean all
 
 # Set root password and create non-root user
-RUN echo 'root:root' | chpasswd && \
-    useradd -m -G wheel -s /bin/bash user && \
+RUN echo 'root:pass' | chpasswd && \
+    useradd -m -G wheel,mock -s /bin/bash user && \
     echo 'user:pass' | chpasswd
 
 # Expose noVNC web port (6080) and SSH (22)

@@ -1,5 +1,7 @@
 [Container]
 ContainerName=fedora-rawhide
+AddCapability=SYS_ADMIN
+SeccompProfile=unconfined
 Environment=DISPLAY=:1
 Image=ghcr.io/koxt2/fedora-rawhide:latest
 PodmanArgs=--attach stdin --tty
