@@ -52,9 +52,17 @@ start_sshd() {
     /usr/sbin/sshd &
 }
 
+# Fix ownership of /home/user when running rootful (volume may be owned by root)
+fix_home_ownership() {
+    if [ "$(stat -c '%u' /home/user)" != "$(id -u user)" ]; then
+        chown -R user:user /home/user
+    fi
+}
+
 # Main script execution
 main() {
     remove_x1_lock
+    fix_home_ownership
     start_sshd
     start_xvfb
     start_openbox
