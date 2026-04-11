@@ -1,7 +1,6 @@
 [Container]
 ContainerName=fedora-rawhide
 Environment=DISPLAY=:1
-Privileged=true
 Image=ghcr.io/koxt2/fedora-rawhide:latest
 PodmanArgs=--attach stdin --tty
 PublishPort=6080:6080
