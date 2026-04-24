@@ -29,7 +29,8 @@ RUN echo 'root:pass' | chpasswd && \
 # - bind-mount host /dev into chroot so /dev/null etc. are accessible
 RUN printf "config_opts['isolation'] = 'simple'\n\
 config_opts['plugin_conf']['bind_mount_enable'] = True\n\
-config_opts['plugin_conf']['bind_mount_opts']['dirs'].append(('/dev', '/dev'))\n" \
+config_opts['plugin_conf']['bind_mount_opts']['dirs'].append(('/dev', '/dev'))\n\
+config_opts['plugin_conf']['bind_mount_opts']['dirs'].append(('/dev/shm', '/dev/shm'))\n" \
     >> /etc/mock/site-defaults.cfg
 
 # Expose noVNC web port (6080) and SSH (22)
